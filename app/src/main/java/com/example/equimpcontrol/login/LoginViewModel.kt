@@ -1,9 +1,8 @@
 package com.example.equimpcontrol.login
 
-import androidx.lifecycle.ViewModel
-
-class LoginViewModel : ViewModel() {
-    fun login(username : String, password : String) {
-
+class LoginModel {
+    fun login(login : String?, password : String?) : Boolean {
+        val regex = Regex("[a-zA-Z0-9]+")
+        return (login != null && password != null) && password.length > 5 && regex.matches(password)
     }
 }

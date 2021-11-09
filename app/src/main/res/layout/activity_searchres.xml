@@ -4,41 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282828"
-    tools:context=".MainActivity">
+    android:background="#282828">
 
-    <EditText
-        android:id="@+id/editTextSearcher"
-        android:layout_width="278dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="40dp"
+    <TextView
+        android:id="@+id/descriptText"
+        android:layout_width="369dp"
+        android:layout_height="366dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/round_edittext"
-        android:ems="10"
-        android:hint="Поиск"
-        android:padding="8dp"
-        android:inputType="textPersonName"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHead" />
 
     <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="200dp"
+        android:id="@+id/editButton"
+        android:layout_width="229dp"
         android:layout_height="60dp"
         android:background="@drawable/round_button"
-        android:text="Найти"
+        android:text="Редактировать"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSearcher"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptText"
+        app:layout_constraintVertical_bias="0.568" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="106dp"
+        android:id="@+id/textViewHead"
+        android:layout_width="172dp"
         android:layout_height="42dp"
-        android:layout_marginTop="48dp"
-        android:text="Поиск"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Результат"
         android:textColor="@color/white"
         android:textSize="36dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/drawable-v24/round_button.xml" value="0.1" />
+        <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/drawable-v24/round_edittext.xml" value="0.1" />
+        <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/layout/activity_edit.xml" value="0.2515625" />
         <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Peter/Downloads/EquimpControl/app/src/main/res/layout/activity_searchres.xml" value="0.25" />
       </map>
     </option>
   </component>

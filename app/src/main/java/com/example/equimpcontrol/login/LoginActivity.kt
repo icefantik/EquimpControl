@@ -1,28 +1,55 @@
 package com.example.equimpcontrol.login
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.os.Environment
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.equimpcontrol.MainActivity
 import com.example.equimpcontrol.R
+import com.example.equimpcontrol.database.Database
+import java.io.File
+import java.sql.SQLException
 
 class LoginActivity : AppCompatActivity()  {
-    val login : String? = null
-    val password : String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        var a : Boolean? = null
+        val db : Database = Database(this)
+        val database : SQLiteDatabase = db.getWritableDatabase()
+        a = db.checkDataBase()
+
         val buttonLogin : Button = findViewById(R.id.login)
         buttonLogin.setOnClickListener {
-            openCreateMain()
+
+            try
+            {
+
+            }
+            catch(e : SQLException)
+            {
+
+            }
+            intentMainMenu()
         }
         buttonLogin.isEnabled = true
     }
-    fun openCreateMain()
+    private fun intentMainMenu()
     {
-        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-        startActivity(intent)
+        val loginEditText : EditText = findViewById(R.id.username)
+        val passwordEditText : EditText = findViewById(R.id.password)
+        val loginModel = LoginModel()
+        if (loginModel.login(loginEditText.text.toString(), passwordEditText.text.toString())) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(applicationContext, "Неправильный пароль", Toast.LENGTH_SHORT).show()
+        }
     }
 }
