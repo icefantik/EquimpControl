@@ -19,22 +19,13 @@ class LoginActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var a : Boolean? = null
         val db : Database = Database(this)
         val database : SQLiteDatabase = db.getWritableDatabase()
-        a = db.checkDataBase()
+        val tmp = db.checkDataBase()
 
         val buttonLogin : Button = findViewById(R.id.login)
         buttonLogin.setOnClickListener {
-
-            try
-            {
-
-            }
-            catch(e : SQLException)
-            {
-
-            }
+            val userData = db.readDatabase(database)
             intentMainMenu()
         }
         buttonLogin.isEnabled = true
@@ -52,4 +43,5 @@ class LoginActivity : AppCompatActivity()  {
             Toast.makeText(applicationContext, "Неправильный пароль", Toast.LENGTH_SHORT).show()
         }
     }
+    
 }

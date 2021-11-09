@@ -1,19 +1,21 @@
 package com.example.equimpcontrol.database
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Environment
+import android.database.sqlite.SQLiteQueryBuilder
+import android.util.Log
 import com.example.equimpcontrol.R
 import java.io.*
-import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
-
 
 class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", null, 1) {
     private val DB_PATH = "//data//data//com.example.equimpcontrol//databases//"
     private val DB_NAME = "Users.db"
+    private val DB_TABEL = "Users"
 
     var myDataBase : SQLiteDatabase? = null
     public fun checkDataBase() : Boolean {
@@ -28,15 +30,32 @@ class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", nu
         return checkDB != null
     }
 
-    private fun openDatabase()
+    public fun openDatabase() : SQLiteDatabase?
     {
-        val myPath: String = DB_PATH + DB_NAME
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE)
+        val myPath: String =  DB_PATH + DB_NAME
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY)
+        return myDataBase
     }
 
+    public fun readDatabase(db: SQLiteDatabase?) : Array<UserData>
+    {
+        var index = 0
+        val userData : Array<UserData> = arrayOf(UserData())
+        val query : String = "SELECT * FROM " + DB_TABEL
+        val cursor : Cursor = db!!.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            userData[index].idUser = cursor.getInt(0)
+            userData[index].login = cursor.getString(1)
+            userData[index].password = cursor.getString(2)
+            userData[index].fullName = cursor.getString(3)
+            ++index
+        }
+        cursor.close()
+        return userData
+    }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        createDataBase()
+        //createDataBase()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -56,6 +75,7 @@ class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", nu
 
         }
     }
+
     private fun copyFromZipFile()
     {
         val istream : InputStream = context.getResources().openRawResource(R.raw.databases)
