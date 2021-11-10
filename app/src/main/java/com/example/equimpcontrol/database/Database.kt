@@ -38,7 +38,7 @@ class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", nu
     }
 
     @SuppressLint("Range")
-    public fun checkUserData(login : String, password : String, db: SQLiteDatabase?) : Boolean
+    public fun checkLoginPassword(login : String, password : String, db: SQLiteDatabase?) : Boolean
     {
         val query : String = "SELECT * FROM " + DB_TABEL
         val cursor : Cursor = db!!.rawQuery(query, null)

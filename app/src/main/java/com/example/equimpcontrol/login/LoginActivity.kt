@@ -19,14 +19,8 @@ class LoginActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val db : Database = Database(this)
-        val database : SQLiteDatabase = db.getWritableDatabase()
-        val tmp = db.checkDataBase()
-
         val buttonLogin : Button = findViewById(R.id.login)
         buttonLogin.setOnClickListener {
-            val userData = db.checkUserData("icefantik", "123Qwaz", database)
             intentMainMenu()
         }
         buttonLogin.isEnabled = true
@@ -36,11 +30,14 @@ class LoginActivity : AppCompatActivity()  {
         val loginEditText : EditText = findViewById(R.id.username)
         val passwordEditText : EditText = findViewById(R.id.password)
         val loginModel = LoginModel()
-        if (loginModel.login(loginEditText.text.toString(), passwordEditText.text.toString())) {
+
+        val db : Database = Database(this)
+        val database : SQLiteDatabase = db.getWritableDatabase()
+        //val tmp = db.checkDataBase()
+        if (loginModel.login(loginEditText.text.toString(), passwordEditText.text.toString()) && db.checkLoginPassword(loginEditText.text.toString(), passwordEditText.text.toString(), database)) {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
-        }
-        else {
+        } else {
             Toast.makeText(applicationContext, "Неправильный пароль", Toast.LENGTH_SHORT).show()
         }
     }
