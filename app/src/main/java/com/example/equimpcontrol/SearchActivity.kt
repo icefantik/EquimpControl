@@ -7,8 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class SearchActivity : AppCompatActivity() {
-    private val textView : TextView = findViewById(R.id.descriptText)
+class SearchActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searchres)
@@ -25,6 +24,7 @@ class SearchActivity : AppCompatActivity() {
     }
     private fun setTextView(text : String)
     {
+        val textView : TextView = findViewById(R.id.descriptText)
         textView.text = text
     }
 }

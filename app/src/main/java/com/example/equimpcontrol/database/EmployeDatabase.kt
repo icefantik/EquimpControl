@@ -12,12 +12,12 @@ import com.example.equimpcontrol.R
 import java.io.*
 import java.util.zip.ZipInputStream
 
-class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", null, 1) {
+class EmployeDatabase(var context : Context) : SQLiteOpenHelper(context, "Users.db", null, 1) {
     private val DB_PATH = "//data//data//com.example.equimpcontrol//databases//"
     private val DB_NAME = "Users.db"
     private val DB_TABEL = "Users"
-
     var myDataBase : SQLiteDatabase? = null
+
     public fun checkDataBase() : Boolean {
         var checkDB: SQLiteDatabase? = null
         try {
