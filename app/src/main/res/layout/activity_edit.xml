@@ -7,7 +7,7 @@
     android:background="#282828">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/saveButton"
         android:layout_width="229dp"
         android:layout_height="60dp"
         android:background="@drawable/round_button"
