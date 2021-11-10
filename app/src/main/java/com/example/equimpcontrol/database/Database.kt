@@ -52,6 +52,7 @@ class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", nu
 
     override fun onCreate(db: SQLiteDatabase?) {
         //createDataBase()
+        TODO("Not yet implemented")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
