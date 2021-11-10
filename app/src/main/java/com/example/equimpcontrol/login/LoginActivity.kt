@@ -15,6 +15,7 @@ import java.io.File
 import java.sql.SQLException
 
 class LoginActivity : AppCompatActivity()  {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -25,7 +26,7 @@ class LoginActivity : AppCompatActivity()  {
 
         val buttonLogin : Button = findViewById(R.id.login)
         buttonLogin.setOnClickListener {
-            val userData = db.readDatabase(database)
+            val userData = db.checkUserData("icefantik", "123Qwaz", database)
             intentMainMenu()
         }
         buttonLogin.isEnabled = true

@@ -37,21 +37,17 @@ class Database(var context : Context) : SQLiteOpenHelper(context, "Users.db", nu
         return myDataBase
     }
 
-    public fun readDatabase(db: SQLiteDatabase?) : Array<UserData>
+    @SuppressLint("Range")
+    public fun checkUserData(login : String, password : String, db: SQLiteDatabase?) : Boolean
     {
-        var index = 0
-        val userData : Array<UserData> = arrayOf(UserData())
         val query : String = "SELECT * FROM " + DB_TABEL
         val cursor : Cursor = db!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
-            userData[index].idUser = cursor.getInt(0)
-            userData[index].login = cursor.getString(1)
-            userData[index].password = cursor.getString(2)
-            userData[index].fullName = cursor.getString(3)
-            ++index
+            if (login == cursor.getString(cursor.getColumnIndex("login")) && password == cursor.getString(cursor.getColumnIndex("password")))
+                return true
         }
         cursor.close()
-        return userData
+        return false
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
