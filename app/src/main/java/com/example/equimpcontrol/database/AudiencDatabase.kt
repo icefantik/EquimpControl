@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 
 class AudiencDatabase(var context : Context) : SQLiteOpenHelper(context, "audiences.db", null, 1) {
     private val DB_PATH = "//data//data//com.example.equimpcontrol//databases//"
@@ -33,16 +34,18 @@ class AudiencDatabase(var context : Context) : SQLiteOpenHelper(context, "audien
     }
 
     @SuppressLint("Range")
-    public fun checkAudiences(audiencNumber : Int, db : SQLiteDatabase?)
+    public fun checkAudiences(audiencNumber : Int, db : SQLiteDatabase?) : Boolean
     {
         DB_TABEL = "AudienceList"
         val query : String = "SELECT * FROM " + DB_TABEL
         val cursor : Cursor = db!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
-            if (audiencNumber == cursor.getInt(cursor.getColumnIndex("AudienceAssignment"))) {
-
+            if (audiencNumber == cursor.getInt(cursor.getColumnIndex("AudienceNumber"))) {
+                
+                return true
             }
         }
+        return false
     }
 
     @SuppressLint("Range")

@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
     {
         val db : AudiencDatabase = AudiencDatabase(this)
         val cheackExistsDB = db.checkDataBase()
-        db.checkAudiences(numberGroup!!.toInt(), db.openDatabase())
+        val tmp = db.checkAudiences(numberGroup!!.toInt(), db.openDatabase())
     }
 }
