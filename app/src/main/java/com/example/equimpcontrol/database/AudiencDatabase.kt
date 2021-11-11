@@ -41,7 +41,7 @@ class AudiencDatabase(var context : Context) : SQLiteOpenHelper(context, "audien
         val cursor : Cursor = db!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (audiencNumber == cursor.getInt(cursor.getColumnIndex("AudienceNumber"))) {
-                
+                srcSoftwareAudiences(cursor.getInt(cursor.getColumnIndex("IDAudienceName")), db)
                 return true
             }
         }
@@ -49,14 +49,14 @@ class AudiencDatabase(var context : Context) : SQLiteOpenHelper(context, "audien
     }
 
     @SuppressLint("Range")
-    private fun srcSoftwareAudiences(idAudienceAssign : Int, db : SQLiteDatabase?) : String // назначение аудитории
+    private fun srcSoftwareAudiences(idAudienceName : Int, db : SQLiteDatabase?) : String // назначение аудитории
     {
-        DB_TABEL = "Аудитория"
+        DB_TABEL = "Audiences"
         val query : String = "SELECT * FROM " + DB_TABEL
         val cursor : Cursor = db!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
-            if (idAudienceAssign == cursor.getInt(cursor.getColumnIndex("ID номер аудитории"))) {
-                return cursor.getString(cursor.getColumnIndex("ПО"))
+            if (idAudienceName == cursor.getInt(cursor.getColumnIndex("IDAudienceName"))) {
+                return cursor.getString(cursor.getColumnIndex("Software"))
             }
         }
         return ""
