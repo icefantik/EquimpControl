@@ -38,5 +38,4 @@ class LoginActivity : AppCompatActivity()  {
             Toast.makeText(applicationContext, "Неправильный пароль", Toast.LENGTH_SHORT).show()
         }
     }
-    
 }

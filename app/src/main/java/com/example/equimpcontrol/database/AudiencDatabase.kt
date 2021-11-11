@@ -55,7 +55,7 @@ class AudiencDatabase(var context : Context) : SQLiteOpenHelper(context, "", nul
         cursor = db!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (id_hardware == cursor.getInt(cursor.getColumnIndex("ID переферии"))) {
-                
+
             }
         }
         return ""
