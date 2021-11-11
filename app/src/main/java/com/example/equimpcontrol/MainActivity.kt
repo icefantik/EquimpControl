@@ -15,13 +15,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //val db : AudiencDatabase = AudiencDatabase(this)
-        //val database : SQLiteDatabase = db.getWritableDatabase()
+
         val editTextSearch : EditText = findViewById(R.id.editTextSearcher)
         val btnSearch : Button = findViewById(R.id.buttonSearch)
         btnSearch.setOnClickListener {
+
             numberGroup = editTextSearch.text.toString()
-            //db.checkAudiences(numberGroup!!.toInt(), database)
+            getTextFromDB()
             if (numberGroup != null) { //Если этот номер кабинета есть в базе данных, то переходим на следующий activity
                 val intent = Intent(this@MainActivity, SearchActivity::class.java)
                 startActivity(intent)
@@ -29,5 +29,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Кабинет не найден", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun getTextFromDB()
+    {
+        val db : AudiencDatabase = AudiencDatabase(this)
+        val cheackExistsDB = db.checkDataBase()
+        db.checkAudiences(numberGroup!!.toInt(), db.openDatabase())
     }
 }
