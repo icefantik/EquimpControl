@@ -105,6 +105,21 @@ class DBEquimpControl(var context : Context)  {
        myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
     }
 
+    public fun insertDataEquip(equipElem: EquipElem)
+    {
+        myDataBase!!.insert(DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem))
+    }
+
+    private fun contentValuesEquipElem(equipElem: EquipElem) : ContentValues
+    {
+        val contentValues : ContentValues = ContentValues()
+        contentValues.put("EQUIPTYPEID", equipElem.EquipTypeId)
+        contentValues.put("NAME", equipElem.Name)
+        contentValues.put("DAYOF", equipElem.DayOf)
+        contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
+        return contentValues
+    }
+
     public fun deleteDataOnEquipID(idEquip : Int)
     {
         //val contentValues : ContentValues = ContentValues()
