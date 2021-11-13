@@ -62,6 +62,18 @@ class DBEquimpControl(var context : Context)  {
         return false
     }
 
+    public fun checkIDEquip(IDEquip : Int?) : Boolean
+    {
+        DB_COLUMN = "ID"
+        val query : String = "SELECT " + DB_COLUMN + " FROM " + DB_TABLE_EQUIP +
+                " WHERE " + DB_COLUMN + " LIKE " + IDEquip
+        val cursor : Cursor = myDataBase!!.rawQuery(query, null)
+        if (cursor.count == 0) {
+            return true
+        }
+        return false
+    }
+
     @SuppressLint("Range")
     public fun getTextEquipAudienc(audiencNumber : Int) : String
     {
@@ -92,16 +104,19 @@ class DBEquimpControl(var context : Context)  {
         }
         return false
     }
-
-    public fun getDataForChangeEquip(audiencNumber : Int) : ArrayList<EquipElem>
+    @SuppressLint("Range")
+    public fun getDataForChangeEquip(audiencNumber : Int, idEquip : Int) : EquipElem
     {
-        var equipElem = ArrayList<EquipElem>()
-
-        val query = "SELECT * FROM ${DB_TABLE_EQUIP} WHERE ${DB_COLUMN} LIKE ${audiencNumber}"
+        DB_COLUMN = "AUDIENCNUM"
+        var equipElem = EquipElem()
+        val query = "SELECT * FROM ${DB_TABLE_EQUIP} WHERE ${DB_COLUMN} LIKE ${audiencNumber} AND ID LIKE ${idEquip}"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
-        while (cursor.moveToNext()) {
-            //equipElem.add
-        }
+        cursor.moveToNext()
+        equipElem.EquipId = cursor.getInt(cursor.getColumnIndex("ID"))
+        equipElem.EquipTypeId = cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID"))
+        equipElem.Name = cursor.getString(cursor.getColumnIndex("NAME"))
+        equipElem.DayOf = cursor.getString(cursor.getColumnIndex("DAYOF"))
+        equipElem.AudiencNum = cursor.getInt(cursor.getColumnIndex("AUDIENCNUM"))
         return equipElem
 
     }

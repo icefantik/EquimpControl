@@ -10,17 +10,16 @@
         android:id="@+id/textViewHead2"
         android:layout_width="300dp"
         android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Редактирование"
         android:textColor="@color/white"
         android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/saveButton2"
@@ -31,24 +30,40 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAudiencNum"
+        app:layout_constraintVertical_bias="0.613" />
 
     <EditText
-        android:id="@+id/editTextPhone5"
+        android:id="@+id/editTextEquipTypeId"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
         android:hint="Тип оборудования"
-        android:padding="8dp"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEquipName"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEquipId"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <EditText
+        android:id="@+id/editTextEquipId"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:hint="Id Оборудования"
+        android:inputType="phone"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHead2"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <EditText
         android:id="@+id/editTextEquipName"
@@ -59,42 +74,42 @@
         android:hint="Название"
         android:inputType="text"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone7"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEquipTypeId"
+        app:layout_constraintVertical_bias="0.064" />
 
     <EditText
-        android:id="@+id/editTextPhone7"
+        android:id="@+id/editTextDayOf"
         android:layout_width="350dp"
         android:layout_height="60dp"
+        android:background="@drawable/round_edittext"
         android:ems="10"
-        android:inputType="date"
         android:hint="Дата установки"
+        android:inputType="date"
         android:padding="8dp"
-        android:background="@drawable/round_edittext"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone8"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEquipName"
+        app:layout_constraintVertical_bias="0.081" />
 
     <EditText
-        android:id="@+id/editTextPhone8"
+        android:id="@+id/editTextAudiencNum"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="phone"
         android:background="@drawable/round_edittext"
+        android:ems="10"
         android:hint="Номер аудитории"
+        android:inputType="phone"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDayOf"
+        app:layout_constraintVertical_bias="0.17000002" />
 </androidx.constraintlayout.widget.ConstraintLayout>

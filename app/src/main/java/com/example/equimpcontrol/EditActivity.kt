@@ -13,16 +13,21 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
 
         setTextView(intent.getSerializableExtra("EquipString") as String)
-        val NumberGroup = intent.getSerializableExtra("ExtraNumberGroup") as Int
+        val numberAudienc = intent.getSerializableExtra("ExtraNumberGroup") as Int
         val db = DBEquimpControl(this)
         db.openDatabase()
 
         val numberEquip : EditText = findViewById(R.id.editTextNumberEquip)
         val buttonFurther : Button = findViewById(R.id.buttonFurther)
         buttonFurther.setOnClickListener {
-            if (numberEquip.text.toString() != "" && db.checkEquimpInAudienc(numberEquip.text.toString().toInt(), NumberGroup)) { // Проверка есть ли оборудование под этим id в этой аудитории
+            if (numberEquip.text.toString() != "" && db.checkEquimpInAudienc(numberEquip.text.toString().toInt(), numberAudienc)) { // Проверка есть ли оборудование под этим id в этой аудитории
                 val intent = Intent(this@EditActivity, EditElemActivity::class.java)
-                //intent.putExtra("", )
+                val equipElem = db.getDataForChangeEquip(numberAudienc, numberEquip.text.toString().toInt())
+                intent.putExtra("ExtraEquipId", equipElem.EquipId)
+                intent.putExtra("ExtraEquipTypeId", equipElem.EquipTypeId)
+                intent.putExtra("ExtraEquipName", equipElem.Name)
+                intent.putExtra("ExtraEquipDayOf", equipElem.DayOf)
+                intent.putExtra("ExtraEquipAudiencNum", equipElem.AudiencNum)
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext, "Введите номер оборудования", Toast.LENGTH_SHORT).show()

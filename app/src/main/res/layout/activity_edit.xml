@@ -8,17 +8,17 @@
 
     <ScrollView
         android:id="@+id/descriptText2"
-        android:layout_width="369dp"
-        android:layout_height="366dp"
+        android:layout_width="370dp"
+        android:layout_height="345dp"
         android:background="@drawable/round_edittext"
         android:padding="10dp"
-        android:textSize="25dp"
         android:scrollbars="none"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberEquip"
+        app:layout_constraintVertical_bias="0.00999999" />
 
     <Button
         android:id="@+id/buttonFurther"
@@ -30,37 +30,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptText2"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
         android:id="@+id/textViewHead"
         android:layout_width="300dp"
         android:layout_height="41dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Редактирование"
         android:textColor="@color/white"
         android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberEquip"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextNumberEquip"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
         android:hint="Номер оборудования"
         android:inputType="phone"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/descriptText2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHead" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHead"
+        app:layout_constraintVertical_bias="0.00999999" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
