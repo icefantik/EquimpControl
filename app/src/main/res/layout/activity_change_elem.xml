@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAudiencNum"
-        app:layout_constraintVertical_bias="0.613" />
+        app:layout_constraintVertical_bias="0.383" />
 
     <EditText
         android:id="@+id/editTextEquipTypeId"
@@ -46,24 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEquipId"
-        app:layout_constraintVertical_bias="0.051" />
-
-    <EditText
-        android:id="@+id/editTextEquipId"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:background="@drawable/round_edittext"
-        android:ems="10"
-        android:hint="Id Оборудования"
-        android:inputType="phone"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHead2"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
         android:id="@+id/editTextEquipName"
@@ -111,5 +95,5 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDayOf"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintVertical_bias="0.089999974" />
 </androidx.constraintlayout.widget.ConstraintLayout>

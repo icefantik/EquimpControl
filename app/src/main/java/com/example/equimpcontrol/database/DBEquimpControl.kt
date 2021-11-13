@@ -1,6 +1,7 @@
 package com.example.equimpcontrol.database
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -92,6 +93,18 @@ class DBEquimpControl(var context : Context)  {
         return equipStr
     }
 
+    public fun updateDataOnEquipID(idEquip : Int, equipElem: EquipElem)
+    {
+        DB_COLUMN = "ID"
+        val contentValues : ContentValues = ContentValues()
+        contentValues.put("EQUIPTYPEID", equipElem.EquipTypeId)
+        contentValues.put("NAME", equipElem.Name)
+        contentValues.put("DAYOF", equipElem.DayOf)
+        contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
+
+        myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
+    }
+
     public fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
     {
         DB_COLUMN = "AUDIENCNUM"
@@ -112,12 +125,10 @@ class DBEquimpControl(var context : Context)  {
         val query = "SELECT * FROM ${DB_TABLE_EQUIP} WHERE ${DB_COLUMN} LIKE ${audiencNumber} AND ID LIKE ${idEquip}"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         cursor.moveToNext()
-        equipElem.EquipId = cursor.getInt(cursor.getColumnIndex("ID"))
         equipElem.EquipTypeId = cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID"))
         equipElem.Name = cursor.getString(cursor.getColumnIndex("NAME"))
         equipElem.DayOf = cursor.getString(cursor.getColumnIndex("DAYOF"))
         equipElem.AudiencNum = cursor.getInt(cursor.getColumnIndex("AUDIENCNUM"))
         return equipElem
-
     }
 }

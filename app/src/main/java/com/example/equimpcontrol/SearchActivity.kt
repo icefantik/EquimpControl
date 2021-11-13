@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.equimpcontrol.database.DBEquimpControl
 
 class SearchActivity : AppCompatActivity() {
+    companion object {
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searchres)

@@ -12,6 +12,8 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        removeAllTextViews()
+
         setTextView(intent.getSerializableExtra("EquipString") as String)
         val numberAudienc = intent.getSerializableExtra("ExtraNumberGroup") as Int
         val db = DBEquimpControl(this)
@@ -23,7 +25,7 @@ class EditActivity : AppCompatActivity() {
             if (numberEquip.text.toString() != "" && db.checkEquimpInAudienc(numberEquip.text.toString().toInt(), numberAudienc)) { // Проверка есть ли оборудование под этим id в этой аудитории
                 val intent = Intent(this@EditActivity, EditElemActivity::class.java)
                 val equipElem = db.getDataForChangeEquip(numberAudienc, numberEquip.text.toString().toInt())
-                intent.putExtra("ExtraEquipId", equipElem.EquipId)
+                intent.putExtra("ExtraEquimpId", numberEquip.text.toString().toInt())
                 intent.putExtra("ExtraEquipTypeId", equipElem.EquipTypeId)
                 intent.putExtra("ExtraEquipName", equipElem.Name)
                 intent.putExtra("ExtraEquipDayOf", equipElem.DayOf)
@@ -41,5 +43,10 @@ class EditActivity : AppCompatActivity() {
         textView.text = text
         textView.setTextSize(25F)
         numAudienc.addView(textView)
+    }
+    private fun removeAllTextViews()
+    {
+        val numAudienc : ScrollView = findViewById(R.id.descriptText2)
+        numAudienc.removeAllViews()
     }
 }
