@@ -26,7 +26,13 @@ class SearchActivity : AppCompatActivity() {
             intent.putExtra("ExtraNumberGroup", extraNumberGroup)
             startActivity(intent)
         }
-        
+        val buttonEditDelete : Button = findViewById(R.id.editButtonDelete)
+        buttonEditDelete.setOnClickListener {
+            val intent = Intent(this@SearchActivity, DelEquipActivity::class.java)
+            intent.putExtra("EquipString", equipString)
+            intent.putExtra("ExtraNumberGroup", extraNumberGroup)
+            startActivity(intent)
+        }
     }
     @SuppressLint("ResourceAsColor")
     private fun setTextView(text : String)

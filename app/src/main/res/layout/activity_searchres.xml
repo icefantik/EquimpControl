@@ -10,7 +10,7 @@
         android:id="@+id/descriptText"
         android:layout_width="350dp"
         android:layout_height="360dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_edittext"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,15 +19,29 @@
 
     <Button
         android:id="@+id/editButton"
-        android:layout_width="229dp"
+        android:layout_width="170dp"
         android:layout_height="60dp"
         android:background="@drawable/round_button"
         android:text="Редактировать"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptText"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.059" />
+
+    <Button
+        android:id="@+id/editButtonDelete"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:text="Удалить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptText"
+        app:layout_constraintVertical_bias="0.059" />
 
     <TextView
         android:id="@+id/textViewHead"

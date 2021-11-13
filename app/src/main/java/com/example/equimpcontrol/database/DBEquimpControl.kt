@@ -102,7 +102,14 @@ class DBEquimpControl(var context : Context)  {
         contentValues.put("DAYOF", equipElem.DayOf)
         contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
 
-        myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
+       myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
+    }
+
+    public fun deleteDataOnEquipID(idEquip : Int)
+    {
+        //val contentValues : ContentValues = ContentValues()
+        //contentValues.remove("${idEquip}")
+        myDataBase!!.delete(DB_TABLE_EQUIP, "ID = ${idEquip}", null)
     }
 
     public fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
