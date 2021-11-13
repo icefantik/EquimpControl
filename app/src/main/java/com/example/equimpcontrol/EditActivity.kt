@@ -12,11 +12,15 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        removeAllTextViews()
+        //removeAllTextViews()
 
-        setTextView(intent.getSerializableExtra("EquipString") as String)
-        val numberAudienc = intent.getSerializableExtra("ExtraNumberGroup") as Int
         val db = DBEquimpControl(this)
+        db.openDatabase()
+        val equipString = db.getTextEquipAudienc(intent.getSerializableExtra("ExtraNumberGroup") as Int)
+        setTextView(equipString)
+
+        //setTextView(intent.getSerializableExtra("EquipString") as String)
+        val numberAudienc = intent.getSerializableExtra("ExtraNumberGroup") as Int
         db.openDatabase()
 
         val numberEquip : EditText = findViewById(R.id.editTextNumberEquip)
