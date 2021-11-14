@@ -80,9 +80,4 @@ class MyDBHelper(context : Context) : SQLiteOpenHelper(context, "EquipControl", 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
     }
-
-//    override fun onConfigure(db: SQLiteDatabase) {
-//        db.setForeignKeyConstraintsEnabled(true)
-//        super.onConfigure(db)
-//    }
 }

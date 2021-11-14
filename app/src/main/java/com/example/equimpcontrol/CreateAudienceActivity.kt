@@ -3,16 +3,49 @@ package com.example.equimpcontrol
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.database.DBEquimpControl
+import com.example.equimpcontrol.database.EquipElem
 
 class CreateAudienceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_audience)
-        val buttonCreate : Button = findViewById(R.id.buttonCreateAudience)
+        setContentView(R.layout.activity_create_equip)
+
+        val buttonCreate : Button = findViewById(R.id.editEquip)
         buttonCreate.setOnClickListener {
-//            val intent = Intent(this@CreateAudienceActivity, ::class.java)
-//            startActivity(intent)
+            getText()
+            val intent = Intent(this@CreateAudienceActivity, MainActivity::class.java)
+            startActivity(intent)
         }
+        val buttonEditEquipEtc : Button = findViewById(R.id.editEquipEtc)
+        buttonEditEquipEtc.setOnClickListener {
+            getText()
+            val intent = Intent(this@CreateAudienceActivity, CreateAudienceActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun getText()
+    {
+        val equipElem = EquipElem()
+        var editText : EditText  = findViewById(R.id.editTextEquipId)
+        var EquipId = editText.text.toString().toInt()
+
+        editText = findViewById(R.id.editTextEquipTypeId)
+        equipElem.EquipTypeId = editText.text.toString().toInt()
+
+        editText = findViewById(R.id.editTextEquipName)
+        equipElem.Name = editText.text.toString()
+
+        editText = findViewById(R.id.editTextDayOf)
+        equipElem.DayOf = editText.text.toString()
+
+        editText = findViewById(R.id.editTextAudiencNum)
+        equipElem.AudiencNum = editText.text.toString().toInt()
+
+        val db = DBEquimpControl(this)
+        db.openDatabase()
+        db.insertDataEquip(equipElem, EquipId)
     }
 }

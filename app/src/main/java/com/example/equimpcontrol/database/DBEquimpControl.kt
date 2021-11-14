@@ -116,9 +116,9 @@ class DBEquimpControl(var context : Context)  {
        myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
     }
 
-    public fun insertDataEquip(equipElem: EquipElem)
+    public fun insertDataEquip(equipElem: EquipElem, idEquip: Int)
     {
-        myDataBase!!.insert(DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem))
+        myDataBase!!.insert(DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem, idEquip))
     }
 
     public fun deleteDataOnEquipID(idEquip : Int)
@@ -126,9 +126,10 @@ class DBEquimpControl(var context : Context)  {
         myDataBase!!.delete(DB_TABLE_EQUIP, "ID = ${idEquip}", null)
     }
 
-    private fun contentValuesEquipElem(equipElem: EquipElem) : ContentValues
+    private fun contentValuesEquipElem(equipElem: EquipElem, idEquip : Int?) : ContentValues
     {
         val contentValues : ContentValues = ContentValues()
+        contentValues.put("ID", idEquip)
         contentValues.put("EQUIPTYPEID", equipElem.EquipTypeId)
         contentValues.put("NAME", equipElem.Name)
         contentValues.put("DAYOF", equipElem.DayOf)

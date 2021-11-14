@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Кабинет не найден", Toast.LENGTH_SHORT).show()
             }
         }
-        val edtButton : Button = findViewById(R.id.editButton)
+        val edtButton : Button = findViewById(R.id.buttonNewEquip)
         edtButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, SearchActivity::class.java)
+            val intent = Intent(this@MainActivity, CreateAudienceActivity::class.java)
             startActivity(intent)
         }
     }

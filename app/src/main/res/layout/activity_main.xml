@@ -7,6 +7,31 @@
     android:background="#282828"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/buttonNewEquip"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:text="Добавить новый элемент"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearcher"
+        app:layout_constraintVertical_bias="0.347" />
+
+    <Button
+        android:id="@+id/buttonSearch2"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:text="Найти"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearcher"
+        app:layout_constraintVertical_bias="0.099" />
+
     <EditText
         android:id="@+id/editTextSearcher"
         android:layout_width="278dp"
@@ -36,19 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSearcher"
         app:layout_constraintVertical_bias="0.099" />
-
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:background="@drawable/round_button"
-        android:text="Добавить аудиторию"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
-        app:layout_constraintVertical_bias="0.215" />
 
     <TextView
         android:id="@+id/textView2"

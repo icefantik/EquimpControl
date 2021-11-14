@@ -11,7 +11,7 @@
         android:layout_width="300dp"
         android:layout_height="41dp"
         android:gravity="center"
-        android:text="Редактирование"
+        android:text="Создание"
         android:textColor="@color/white"
         android:textSize="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,10 +44,26 @@
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHead2"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.173" />
+
+    <EditText
+        android:id="@+id/editTextEquipId"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:hint="Id оборудования"
+        android:inputType="phone"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHead2"
+        app:layout_constraintVertical_bias="0.033" />
 
     <ListView
         android:id="@+id/listViewEquipTypeId"
