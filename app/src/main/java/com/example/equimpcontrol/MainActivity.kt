@@ -18,13 +18,18 @@ class MainActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.buttonSearch)
         btnSearch.setOnClickListener {
             val numberGroup : Int = editTextSearch.text.toString().toInt()
-            if (db.checkAudiencNumber(numberGroup)) { //Если этот номер кабинета есть в базе данных, то переходим на следующий activity
+            if (db.checkAudiencNumber(numberGroup) && editTextSearch.text.toString() != "") { //Если этот номер кабинета есть в базе данных, то переходим на следующий activity
                 val intent = Intent(this@MainActivity, SearchActivity::class.java)
                 intent.putExtra("ExtraNumberGroup", numberGroup)
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext, "Кабинет не найден", Toast.LENGTH_SHORT).show()
             }
+        }
+        val edtButton : Button = findViewById(R.id.editButton)
+        edtButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, SearchActivity::class.java)
+            startActivity(intent)
         }
     }
 }

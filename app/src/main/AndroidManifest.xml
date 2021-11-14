@@ -24,6 +24,7 @@
         <activity android:name=".editaudience.EditAudience" />
         <activity android:name=".EditElemActivity" />
         <activity android:name=".DelEquipActivity" />
+        <activity android:name=".CreateAudienceActivity" />
     </application>
 
 </manifest>

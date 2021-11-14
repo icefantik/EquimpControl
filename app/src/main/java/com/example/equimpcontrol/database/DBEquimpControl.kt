@@ -49,6 +49,17 @@ class DBEquimpControl(var context : Context)  {
         return false
     }
 
+    public fun getEquipType() : ArrayList<String>
+    {
+        val equipTypes = ArrayList<String>()
+        val query : String = "SELECT * FROM ${DB_TABLE_EQUIP}"
+        val cursor : Cursor = myDataBase!!.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            equipTypes.add(cursor.getString(cursor.getColumnIndex("ID")) + ": " + cursor.getString(cursor.getColumnIndex("NAME")))
+        }
+        return equipTypes
+    }
+
     @SuppressLint("Range")
     public fun checkAudiencNumber(audiencNumber : Int) : Boolean
     {
@@ -110,6 +121,11 @@ class DBEquimpControl(var context : Context)  {
         myDataBase!!.insert(DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem))
     }
 
+    public fun deleteDataOnEquipID(idEquip : Int)
+    {
+        myDataBase!!.delete(DB_TABLE_EQUIP, "ID = ${idEquip}", null)
+    }
+
     private fun contentValuesEquipElem(equipElem: EquipElem) : ContentValues
     {
         val contentValues : ContentValues = ContentValues()
@@ -118,13 +134,6 @@ class DBEquimpControl(var context : Context)  {
         contentValues.put("DAYOF", equipElem.DayOf)
         contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
         return contentValues
-    }
-
-    public fun deleteDataOnEquipID(idEquip : Int)
-    {
-        //val contentValues : ContentValues = ContentValues()
-        //contentValues.remove("${idEquip}")
-        myDataBase!!.delete(DB_TABLE_EQUIP, "ID = ${idEquip}", null)
     }
 
     public fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
