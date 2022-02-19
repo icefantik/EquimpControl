@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EquimpControl">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".EditActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.EditActivity" />
         <activity android:name=".editaudience.EditAudience" />
-        <activity android:name=".EditElemActivity" />
-        <activity android:name=".DelEquipActivity" />
-        <activity android:name=".CreateAudienceActivity" />
+        <activity android:name=".activity.EditElemActivity" />
+        <activity android:name=".activity.DelEquipActivity" />
+        <activity android:name=".activity.CreateAudienceActivity" />
     </application>
 
 </manifest>

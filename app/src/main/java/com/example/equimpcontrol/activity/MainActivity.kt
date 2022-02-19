@@ -1,4 +1,4 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.buttonSearch)
         btnSearch.setOnClickListener {
             val numberGroup : Int = editTextSearch.text.toString().toInt()
-            if (db.checkAudiencNumber(numberGroup) && editTextSearch.text.toString() != "") { //Если этот номер кабинета есть в базе данных, то переходим на следующий activity
+            if (db.checkAudienceNumber(numberGroup) && editTextSearch.text.toString() != "") { //Если этот номер кабинета есть в базе данных, то переходим на следующий activity
                 val intent = Intent(this@MainActivity, SearchActivity::class.java)
                 intent.putExtra("ExtraNumberGroup", numberGroup)
                 startActivity(intent)

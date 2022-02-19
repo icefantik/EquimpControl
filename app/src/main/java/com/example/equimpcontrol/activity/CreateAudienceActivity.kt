@@ -1,14 +1,16 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 import com.example.equimpcontrol.database.EquipElem
 
 class CreateAudienceActivity : AppCompatActivity() {
+    lateinit var typeEquimp : Array<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_equip)
@@ -30,7 +32,7 @@ class CreateAudienceActivity : AppCompatActivity() {
     {
         val equipElem = EquipElem()
         var editText : EditText  = findViewById(R.id.editTextEquipId)
-        var EquipId = editText.text.toString().toInt()
+        val EquipId = editText.text.toString().toInt()
 
         editText = findViewById(R.id.editTextEquipTypeId)
         equipElem.EquipTypeId = editText.text.toString().toInt()

@@ -1,10 +1,10 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 
 class EditActivity : AppCompatActivity() {
@@ -12,11 +12,9 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        //removeAllTextViews()
-
         val db = DBEquimpControl(this)
         db.openDatabase()
-        val equipString = db.getTextEquipAudienc(intent.getSerializableExtra("ExtraNumberGroup") as Int)
+        val equipString = db.getTextEquipAudience(intent.getSerializableExtra("ExtraNumberGroup") as Int)
         setTextView(equipString)
 
         //setTextView(intent.getSerializableExtra("EquipString") as String)

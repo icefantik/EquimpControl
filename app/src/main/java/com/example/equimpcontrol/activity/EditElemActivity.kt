@@ -1,12 +1,11 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 import com.example.equimpcontrol.database.EquipElem
 import java.util.*

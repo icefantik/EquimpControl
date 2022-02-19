@@ -1,4 +1,4 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 
 class SearchActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class SearchActivity : AppCompatActivity() {
         val extraNumberGroup = intent.getSerializableExtra("ExtraNumberGroup") as Int
         val db = DBEquimpControl(this)
         db.openDatabase()
-        val equipString = db.getTextEquipAudienc(extraNumberGroup)
+        val equipString = db.getTextEquipAudience(extraNumberGroup)
         setTextView(equipString)
         val button : Button = findViewById(R.id.editButton)
         button.setOnClickListener {

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton2"
         android:layout_width="229dp"
         android:layout_height="60dp"
@@ -39,6 +39,8 @@
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
+        android:textColorHint="#C2C2C2"
+        android:textColor="@color/black"
         android:hint="Тип оборудования"
         android:inputType="phone"
         android:padding="8dp"
@@ -55,6 +57,8 @@
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
+        android:textColorHint="#C2C2C2"
+        android:textColor="@color/black"
         android:hint="Id оборудования"
         android:inputType="phone"
         android:padding="8dp"
@@ -78,6 +82,8 @@
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
+        android:textColorHint="#C2C2C2"
+        android:textColor="@color/black"
         android:hint="Название"
         android:inputType="text"
         android:padding="8dp"
@@ -94,6 +100,8 @@
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
+        android:textColorHint="#C2C2C2"
+        android:textColor="@color/black"
         android:hint="Дата установки"
         android:inputType="date"
         android:padding="8dp"
@@ -110,6 +118,8 @@
         android:layout_height="60dp"
         android:background="@drawable/round_edittext"
         android:ems="10"
+        android:textColorHint="#C2C2C2"
+        android:textColor="@color/black"
         android:hint="Номер аудитории"
         android:inputType="phone"
         android:padding="8dp"

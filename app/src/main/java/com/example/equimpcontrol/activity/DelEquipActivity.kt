@@ -1,4 +1,4 @@
-package com.example.equimpcontrol
+package com.example.equimpcontrol.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.equimpcontrol.R
 import com.example.equimpcontrol.database.DBEquimpControl
 
 class DelEquipActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class DelEquipActivity : AppCompatActivity() {
 
         val db = DBEquimpControl(this)
         db.openDatabase()
-        val equipString = db.getTextEquipAudienc(intent.getSerializableExtra("ExtraNumberGroup") as Int)
+        val equipString = db.getTextEquipAudience(intent.getSerializableExtra("ExtraNumberGroup") as Int)
         setTextView(equipString)
 
         val textEdit : TextView = findViewById(R.id.editTextNumberEquip)

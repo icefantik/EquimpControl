@@ -6,23 +6,17 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
-import android.database.sqlite.SQLiteOpenHelper
 
 class DBEquimpControl(var context : Context)  {
     private val DB_PATH = "//data//data//com.example.equimpcontrol//databases//"
-    public val DB_NAME = "EquipControl.db"
-    public var DB_TABLE_EMPLOYEES = "Employees"
-    public var DB_TABLE_EQUIP = "Equip"
-    public var DB_TABLE_EQUIPTYPE = "EquipType"
-    public var DB_TABLE_EQUIPPART = "EquipPart"
-    public var DB_COLUMN = ""
-    var myDataBase : SQLiteDatabase? = null
-    val dbHelper = MyDBHelper(context)
+    private var myDataBase : SQLiteDatabase? = null
+    private val dbHelper = MyDBHelper(context)
+    private lateinit var typeEquimp : Array<String>
 
-    public fun checkDataBase() : Boolean {
+    fun checkDataBase() : Boolean {
         var checkDB: SQLiteDatabase? = null
         try {
-            val myPath = DB_PATH + DB_NAME
+            val myPath = DB_PATH + NamesDB.DB_NAME
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY)
         } catch (e: SQLiteException) {
             //onCreate(myDataBase)
@@ -31,15 +25,14 @@ class DBEquimpControl(var context : Context)  {
         return checkDB != null
     }
 
-    public fun openDatabase()
-    {
+    fun openDatabase() {
         myDataBase = dbHelper.writableDatabase
     }
 
     @SuppressLint("Range")
-    public fun checkLoginPassword(login : String, password : String) : Boolean
+    fun checkLoginPassword(login : String, password : String) : Boolean
     {
-        val query : String = "SELECT * FROM " + DB_TABLE_EMPLOYEES
+        val query : String = "SELECT * FROM " + NamesDB.DB_TABLE_EMPLOYEES
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (login == cursor.getString(cursor.getColumnIndex("LOGIN")) && password == cursor.getString(cursor.getColumnIndex("PWD")))
@@ -49,10 +42,18 @@ class DBEquimpControl(var context : Context)  {
         return false
     }
 
-    public fun getEquipType() : ArrayList<String>
+    private fun setTextEquipTypeID(idEquipType: Int) : String
+    {
+        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIPTYPE WHERE ID = $idEquipType"
+        val cursor : Cursor = myDataBase!!.rawQuery(query, null)
+        cursor.moveToNext()
+        return cursor.getString(cursor.getColumnIndex("NAME"))
+    }
+
+    fun getEquipType() : ArrayList<String>
     {
         val equipTypes = ArrayList<String>()
-        val query : String = "SELECT * FROM ${DB_TABLE_EQUIP}"
+        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIP"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             equipTypes.add(cursor.getString(cursor.getColumnIndex("ID")) + ": " + cursor.getString(cursor.getColumnIndex("NAME")))
@@ -61,24 +62,20 @@ class DBEquimpControl(var context : Context)  {
     }
 
     @SuppressLint("Range")
-    public fun checkAudiencNumber(audiencNumber : Int) : Boolean
+    fun checkAudienceNumber(audienceNumber : Int) : Boolean // Проверяет есть ли номер аудитории в базе данных
     {
-        DB_COLUMN = "AUDIENCNUM"
-        val query : String = "SELECT " + DB_COLUMN + " FROM " + DB_TABLE_EQUIP +
-                " WHERE " + DB_COLUMN + " LIKE " + audiencNumber +
-                " GROUP BY " + DB_COLUMN
+        val query : String = "SELECT " + NamesDB.DB_COLUMN_AUDIENCENUM + " FROM " + NamesDB.DB_TABLE_EQUIP +
+                " WHERE " + NamesDB.DB_COLUMN_AUDIENCENUM + " LIKE " + audienceNumber +
+                " GROUP BY " + NamesDB.DB_COLUMN_AUDIENCENUM
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
-        if (cursor != null && cursor.count > 0) {
-            return true
-        }
-        return false
+        return cursor.count > 0
     }
 
-    public fun checkIDEquip(IDEquip : Int?) : Boolean
+    fun checkIDEquip(IDEquip : Int?) : Boolean
     {
-        DB_COLUMN = "ID"
-        val query : String = "SELECT " + DB_COLUMN + " FROM " + DB_TABLE_EQUIP +
-                " WHERE " + DB_COLUMN + " LIKE " + IDEquip
+        NamesDB.DB_COLUMN = "ID"
+        val query : String = "SELECT " + NamesDB.DB_COLUMN + " FROM " + NamesDB.DB_TABLE_EQUIP +
+                " WHERE " + NamesDB.DB_COLUMN + " LIKE " + IDEquip
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         if (cursor.count == 0) {
             return true
@@ -87,16 +84,14 @@ class DBEquimpControl(var context : Context)  {
     }
 
     @SuppressLint("Range")
-    public fun getTextEquipAudienc(audiencNumber : Int) : String
+    fun getTextEquipAudience(audienceNumber : Int) : String
     {
-        var index = 0
-        var equipStr : String = ""
-        val query : String = "SELECT * FROM " + DB_TABLE_EQUIP + " WHERE AUDIENCNUM LIKE " + audiencNumber
+        var equipStr = ""
+        val query : String = "SELECT * FROM " + NamesDB.DB_TABLE_EQUIP + " WHERE AUDIENCNUM = " + audienceNumber
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
-            //equip[index++] = cursor.getString(cursor.getColumnIndex("NAME"))
             equipStr += cursor.getString(cursor.getColumnIndex("ID")) + ", " +
-                    cursor.getString(cursor.getColumnIndex("EQUIPTYPEID")) + ", " +
+                    cursor.getString(cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID"))) + ", " + //setTextEquipTypeID
                     cursor.getString(cursor.getColumnIndex("NAME")) + ", " +
                     cursor.getString(cursor.getColumnIndex("DAYOF")) + ", " +
                     cursor.getString(cursor.getColumnIndex("AUDIENCNUM")) + "\n\n"
@@ -104,43 +99,43 @@ class DBEquimpControl(var context : Context)  {
         return equipStr
     }
 
-    public fun updateDataOnEquipID(idEquip : Int, equipElem: EquipElem)
+    fun updateDataOnEquipID(idEquip : Int, equipElem: EquipElem)
     {
-        DB_COLUMN = "ID"
-        val contentValues : ContentValues = ContentValues()
-        contentValues.put("EQUIPTYPEID", equipElem.EquipTypeId)
-        contentValues.put("NAME", equipElem.Name)
-        contentValues.put("DAYOF", equipElem.DayOf)
-        contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
+        NamesDB.DB_COLUMN = "ID"
+        val contentValues = ContentValues()
+        contentValues.put(MyDBHelper.EquioTypeID, setTextEquipTypeID(equipElem.EquipTypeId!!.toInt()))
+        contentValues.put(MyDBHelper.Name, equipElem.Name)
+        contentValues.put(MyDBHelper.DayOf, equipElem.DayOf)
+        contentValues.put(MyDBHelper.AudiencNum, equipElem.AudiencNum)
 
-       myDataBase!!.update(DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
+       myDataBase!!.update(NamesDB.DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
     }
 
-    public fun insertDataEquip(equipElem: EquipElem, idEquip: Int)
+    fun insertDataEquip(equipElem: EquipElem, idEquip: Int)
     {
-        myDataBase!!.insert(DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem, idEquip))
+        myDataBase!!.insert(NamesDB.DB_TABLE_EQUIP, null, contentValuesEquipElem(equipElem, idEquip))
     }
 
-    public fun deleteDataOnEquipID(idEquip : Int)
+    fun deleteDataOnEquipID(idEquip : Int)
     {
-        myDataBase!!.delete(DB_TABLE_EQUIP, "ID = ${idEquip}", null)
+        myDataBase!!.delete(NamesDB.DB_TABLE_EQUIP, "ID = ${idEquip}", null)
     }
 
     private fun contentValuesEquipElem(equipElem: EquipElem, idEquip : Int?) : ContentValues
     {
-        val contentValues : ContentValues = ContentValues()
+        val contentValues = ContentValues()
         contentValues.put("ID", idEquip)
-        contentValues.put("EQUIPTYPEID", equipElem.EquipTypeId)
+        contentValues.put("EQUIPTYPEID", setTextEquipTypeID(equipElem.EquipTypeId!!.toInt()))
         contentValues.put("NAME", equipElem.Name)
         contentValues.put("DAYOF", equipElem.DayOf)
         contentValues.put("AUDIENCNUM", equipElem.AudiencNum)
         return contentValues
     }
 
-    public fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
+    fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
     {
-        DB_COLUMN = "AUDIENCNUM"
-        val query = "SELECT * FROM ${DB_TABLE_EQUIP} WHERE ${DB_COLUMN} LIKE ${audiencNumber}"
+        NamesDB.DB_COLUMN = "AUDIENCNUM"
+        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIP WHERE $NamesDB.DB_COLUMN LIKE $audiencNumber"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (idEquip == cursor.getInt(cursor.getColumnIndex("ID"))) {
@@ -150,11 +145,11 @@ class DBEquimpControl(var context : Context)  {
         return false
     }
     @SuppressLint("Range")
-    public fun getDataForChangeEquip(audiencNumber : Int, idEquip : Int) : EquipElem
+    fun getDataForChangeEquip(audienceNumber : Int, idEquip : Int) : EquipElem
     {
-        DB_COLUMN = "AUDIENCNUM"
-        var equipElem = EquipElem()
-        val query = "SELECT * FROM ${DB_TABLE_EQUIP} WHERE ${DB_COLUMN} LIKE ${audiencNumber} AND ID LIKE ${idEquip}"
+        NamesDB.DB_COLUMN = "AUDIENCNUM"
+        val equipElem = EquipElem()
+        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIP WHERE $NamesDB.DB_COLUMN LIKE $audienceNumber AND ID LIKE $idEquip"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         cursor.moveToNext()
         equipElem.EquipTypeId = cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID"))
@@ -162,5 +157,12 @@ class DBEquimpControl(var context : Context)  {
         equipElem.DayOf = cursor.getString(cursor.getColumnIndex("DAYOF"))
         equipElem.AudiencNum = cursor.getInt(cursor.getColumnIndex("AUDIENCNUM"))
         return equipElem
+    }
+    @JvmName("getTypeEquimp1")
+    fun getTypeEquimp() : Array<String> {
+        val query : String = "SELECT NAME FROM ${NamesDB.DB_TABLE_EQUIPTYPE}"
+        val cursor : Cursor = myDataBase!!.rawQuery(query, null)
+
+        return typeEquimp
     }
 }

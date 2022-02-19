@@ -4,27 +4,30 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class MyDBHelper(context : Context) : SQLiteOpenHelper(context, "EquipControl", null, 1) {
-    public val DB_NAME = "EquipControl"
+class MyDBHelper(context : Context) : SQLiteOpenHelper(context, "DBEquimpControl.db", null, 1) {
+    public val DB_NAME = "DBEquimpControl.db"
     public var DB_TABLE_EMPLOYEES = "Employees"
     public var DB_TABLE_EQUIP = "Equip"
     public var DB_TABLE_EQUIPTYPE = "EquipType"
     public var DB_TABLE_EQUIPPART = "EquipPart"
     public var DB_COLUMN = ""
 
-    private val Login = "LOGIN"
-    private val Pwd = "PWD"
-    private val FullName = "FULLNAME"
+    companion object {
+        val Login = "LOGIN"
+        val Pwd = "PWD"
+        val FullName = "FULLNAME"
 
-    private val ID = "ID"
-    private val EquioTypeID = "EQUIPTYPEID"
-    private val Name = "NAME"
-    private val DayOf = "DAYOF"
-    private val AudiencNum = "AUDIENCNUM"
+        val ID = "ID"
+        val EquioTypeID = "EQUIPTYPEID"
+        val Name = "NAME"
+        val DayOf = "DAYOF"
+        val AudiencNum = "AUDIENCNUM"
 
-    private val EquipID = "EQUIPID"
-    private val EquipPartID = "EQUIPPARTID"
-    private val Note = "NOTE"
+        val EquipTypeID = "ID"
+        val EquipID = "EQUIPID"
+        val EquipPartID = "EQUIPPARTID"
+        val Note = "NOTE"
+    }
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE ${DB_TABLE_EMPLOYEES} (" +

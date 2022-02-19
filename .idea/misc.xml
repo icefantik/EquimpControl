@@ -3,16 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/drawable-v24/round_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/drawable-v24/round_edittext.xml" value="0.3828125" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_add_audience.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_addition_equip.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_change_elem.xml" value="0.33" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_create_audience.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_create_elem.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_create_elem.xml" value="0.25" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_create_equip.xml" value="0.25" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_del_equip.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_edit.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_edit_audience.xml" value="0.20572916666666666" />
-        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_login.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_edit_audience.xml" value="0.33" />
+        <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_main.xml" value="0.33955223880597013" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_remove_equip.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/Peter/Desktop/EquimpControl/app/src/main/res/layout/activity_searchres.xml" value="0.33" />
