@@ -24,7 +24,7 @@ class EditActivity : AppCompatActivity() {
         val numberEquip : EditText = findViewById(R.id.editTextNumberEquip)
         val buttonFurther : Button = findViewById(R.id.buttonFurther)
         buttonFurther.setOnClickListener {
-            if (numberEquip.text.toString() != "" && db.checkEquimpInAudienc(numberEquip.text.toString().toInt(), numberAudienc)) { // Проверка есть ли оборудование под этим id в этой аудитории
+            if (numberEquip.text.toString() != "" && db.checkEquimpInAudience(numberEquip.text.toString().toInt(), numberAudienc)) { // Проверка есть ли оборудование под этим id в этой аудитории
                 val intent = Intent(this@EditActivity, EditElemActivity::class.java)
                 val equipElem = db.getDataForChangeEquip(numberAudienc, numberEquip.text.toString().toInt())
                 intent.putExtra("ExtraEquimpId", numberEquip.text.toString().toInt())

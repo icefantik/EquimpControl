@@ -108,7 +108,7 @@ class DBEquimpControl(var context : Context)  {
         contentValues.put(MyDBHelper.DayOf, equipElem.DayOf)
         contentValues.put(MyDBHelper.AudiencNum, equipElem.AudiencNum)
 
-       myDataBase!!.update(NamesDB.DB_TABLE_EQUIP, contentValues, "ID = ${idEquip}", null)
+       myDataBase!!.update(NamesDB.DB_TABLE_EQUIP, contentValues, "ID = $idEquip", null)
     }
 
     fun insertDataEquip(equipElem: EquipElem, idEquip: Int)
@@ -118,7 +118,7 @@ class DBEquimpControl(var context : Context)  {
 
     fun deleteDataOnEquipID(idEquip : Int)
     {
-        myDataBase!!.delete(NamesDB.DB_TABLE_EQUIP, "ID = ${idEquip}", null)
+        myDataBase!!.delete(NamesDB.DB_TABLE_EQUIP, "ID = $idEquip", null)
     }
 
     private fun contentValuesEquipElem(equipElem: EquipElem, idEquip : Int?) : ContentValues
@@ -132,10 +132,9 @@ class DBEquimpControl(var context : Context)  {
         return contentValues
     }
 
-    fun checkEquimpInAudienc(idEquip : Int, audiencNumber: Int) : Boolean
+    fun checkEquimpInAudience(idEquip : Int, audienceNumber: Int) : Boolean
     {
-        NamesDB.DB_COLUMN = "AUDIENCNUM"
-        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIP WHERE $NamesDB.DB_COLUMN LIKE $audiencNumber"
+        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIP WHERE $NamesDB.DB_COLUMN LIKE $audienceNumber"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (idEquip == cursor.getInt(cursor.getColumnIndex("ID"))) {
