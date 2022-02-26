@@ -44,6 +44,7 @@ class MyDBHelper(context : Context) : SQLiteOpenHelper(context, "DBEquimpControl
                 "(${ID} INTEGER PRIMARY KEY, ${Name} TEXT)")
         db?.execSQL("INSERT INTO ${DB_TABLE_EQUIPTYPE} (${ID}, ${Name})" +
                 " VALUES " +
+                "(0, \"Неизвестный тип комплектующего\"), " +
                 "(1, \"Комплектующие компьютера\"), " +
                 "(2, \"Комплектующие принтера\")"
         )

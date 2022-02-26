@@ -1,5 +1,6 @@
 package com.example.equimpcontrol.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -27,12 +28,14 @@ class DelEquipActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    @SuppressLint("ResourceAsColor")
     private fun setTextView(text : String)
     {
+        val tv = TextView(this)
+        tv.text = text
+        tv.setTextSize(25F)
+        tv.setTextColor(R.color.black)
         val numAudienc : ScrollView = findViewById(R.id.descriptText2)
-        val textView : TextView = TextView(this)
-        textView.text = text
-        textView.setTextSize(25F)
-        numAudienc.addView(textView)
+        numAudienc.addView(tv)
     }
 }

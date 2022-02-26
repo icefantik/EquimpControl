@@ -44,10 +44,12 @@ class DBEquimpControl(var context : Context)  {
 
     private fun setTextEquipTypeID(idEquipType: Int) : String
     {
-        val query = "SELECT * FROM $NamesDB.DB_TABLE_EQUIPTYPE WHERE ID = $idEquipType"
+        val query = "SELECT * FROM ${NamesDB.DB_TABLE_EQUIPTYPE} WHERE ID = $idEquipType"
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         cursor.moveToNext()
-        return cursor.getString(cursor.getColumnIndex("NAME"))
+        if (cursor.count > 0)
+            return cursor.getString(cursor.getColumnIndex("NAME"))
+        return "Неизвестный тип комплектующего"
     }
 
     fun getEquipType() : ArrayList<String>
@@ -91,7 +93,7 @@ class DBEquimpControl(var context : Context)  {
         val cursor : Cursor = myDataBase!!.rawQuery(query, null)
         while (cursor.moveToNext()) {
             equipStr += cursor.getString(cursor.getColumnIndex("ID")) + ", " +
-                    cursor.getString(cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID"))) + ", " + //setTextEquipTypeID
+                    setTextEquipTypeID(cursor.getInt(cursor.getInt(cursor.getColumnIndex("EQUIPTYPEID")))) + ", " +
                     cursor.getString(cursor.getColumnIndex("NAME")) + ", " +
                     cursor.getString(cursor.getColumnIndex("DAYOF")) + ", " +
                     cursor.getString(cursor.getColumnIndex("AUDIENCNUM")) + "\n\n"

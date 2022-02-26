@@ -1,5 +1,6 @@
 package com.example.equimpcontrol.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -19,7 +20,6 @@ class EditActivity : AppCompatActivity() {
 
         //setTextView(intent.getSerializableExtra("EquipString") as String)
         val numberAudienc = intent.getSerializableExtra("ExtraNumberGroup") as Int
-        db.openDatabase()
 
         val numberEquip : EditText = findViewById(R.id.editTextNumberEquip)
         val buttonFurther : Button = findViewById(R.id.buttonFurther)
@@ -38,13 +38,15 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
+    @SuppressLint("ResourceAsColor")
     private fun setTextView(text : String)
     {
+        val tv = TextView(this)
+        tv.text = text
+        tv.setTextSize(25F)
+        tv.setTextColor(R.color.black)
         val numAudienc : ScrollView = findViewById(R.id.descriptText2)
-        val textView : TextView = TextView(this)
-        textView.text = text
-        textView.setTextSize(25F)
-        numAudienc.addView(textView)
+        numAudienc.addView(tv)
     }
     private fun removeAllTextViews()
     {
